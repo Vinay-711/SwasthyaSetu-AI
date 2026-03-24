@@ -1,0 +1,23 @@
+{
+  "patients": {
+    "25AB5F08": {
+      "patient_id": "25AB5F08",
+      "created_at": "2026-03-24T09:57:38.083713",
+      "name": "Aarav Patel",
+      "age": 28,
+      "gender": "M",
+      "blood_group": null,
+      "phone": null,
+      "occupation": null,
+      "region": null
+    },
+    "973BB1DC": {
+      "patient_id": "973BB1DC",
+      "created_at": "2026-03-24T09:58:23.675518",
+      "name": "JSON Test User",
+      "age": 30,
+      "gender": "F"
+    }
+  },
+  "notifications": {}
+}
