@@ -67,7 +67,8 @@ Swastya_Setu_DB/
 ### 1. Clone and configure
 
 ```bash
-cd /Users/vinxy/Swastya_Setu_DB
+git clone https://github.com/Vinay-711/SwasthyaSetu-AI.git
+cd SwasthyaSetu-AI
 cp .env.example .env
 # Edit .env with your Databricks/MLflow credentials (optional for local demo)
 ```
@@ -159,3 +160,21 @@ Full interactive docs at → http://localhost:8000/docs
 ---
 
 *Built for SwasthyaSetu AI · March 2026*
+
+## Reproducible setup notes
+
+Use the cloned repository directory instead of the author-specific absolute path shown in older examples. For a manual setup, start the API and Streamlit in separate terminals so a failed backend is visible:
+
+```sh
+# Terminal 1, from the repository root after installing dependencies
+cd backend
+python -m uvicorn main:app --reload --host 127.0.0.1 --port 8000
+```
+
+```sh
+# Terminal 2, from the repository root with the same environment active
+cd frontend
+python -m streamlit run app.py --server.port 8501
+```
+
+Fallback heuristics, OCR output and occupational risk estimates are research demonstrations, not validated diagnoses. Provider notification stubs do not prove that a message was delivered. Use synthetic patient records and check the model/provider configuration in [backend/services](backend/services) before evaluating results.
