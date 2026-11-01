@@ -178,3 +178,11 @@ python -m streamlit run app.py --server.port 8501
 ```
 
 Fallback heuristics, OCR output and occupational risk estimates are research demonstrations, not validated diagnoses. Provider notification stubs do not prove that a message was delivered. Use synthetic patient records and check the model/provider configuration in [backend/services](backend/services) before evaluating results.
+
+### Audio-file cleanup regression tests
+
+Run `python -m unittest discover -s tests -p test_transcription_cleanup.py`.
+The standard-library suite uses synthetic bytes and mocked conversion/recognition,
+with no microphone, network, or patient data. It checks removal of both the uploaded
+temporary file and converted WAV on success, recognition failure, and partial export
+failure. The tests establish cleanup behavior, not transcription or medical accuracy.

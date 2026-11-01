@@ -86,14 +86,14 @@ def transcribe_audio(audio_bytes: bytes, filename: str = "audio.wav") -> str:
         tmp_path = tmp.name
 
     transcription = ""
+    wav_path = tmp_path
     try:
         import speech_recognition as sr  # type: ignore[import-untyped]
 
-        wav_path = tmp_path
         if suffix.lower() != ".wav":
             from pydub import AudioSegment  # type: ignore[import-untyped]
             seg = AudioSegment.from_file(tmp_path)
-            wav_path = tmp_path.replace(suffix, ".wav")
+            wav_path = os.path.splitext(tmp_path)[0] + ".wav"
             seg.export(wav_path, format="wav")
 
         recognizer = sr.Recognizer()
@@ -107,9 +107,10 @@ def transcribe_audio(audio_bytes: bytes, filename: str = "audio.wav") -> str:
             "— Upload a valid WAV file and ensure internet access."
         )
     finally:
-        try:
-            os.unlink(tmp_path)
-        except OSError:
-            pass
+        for path in {tmp_path, wav_path}:
+            try:
+                os.unlink(path)
+            except OSError:
+                pass
 
     return transcription
